@@ -5,8 +5,8 @@ A script to synchronize docker images between hosts with emphasis on reducing th
 Lets assume you want to synchronize your local machine docker images with the ones on your `myamazingweb.com` server. You would run:
 
 	>> python3 docker-sync user@myamazingweb.com
-	Connecting to dvd@darias.net.
-	Listing dvd@darias.net images...............................DONE
+	Connecting to user@myamazingweb.com.
+	Listing user@myamazingweb.com images...............................DONE
 	Listing local images........................................DONE
 	--> Report:
 	current: ['squid:latest', 'ubuntu:latest', 'debian:8.0']
