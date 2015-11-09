@@ -15,9 +15,10 @@ Lets assume you want to synchronize your local machine docker images with the on
 
 
 Nothing was synchronized yet, this is just to see the status of all the images:
-	* **Current** means the images have the exact same ID.
-	* **Need Update** means that the two images have the same name:tag but different ID.
-	* **New** means you dont have a local image with the listed tag.
+
+    * **Current** means the images have the exact same ID.
+    * **Need Update** means that the two images have the same name:tag but different ID.
+    * **New** means you dont have a local image with the listed tag.
 
 To sync the redis image run
 
