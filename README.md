@@ -30,6 +30,9 @@ With the command `docker-sync user@somewebserver.com django:latest` you would on
 Lets assume you want to synchronize your local machine docker images with the ones on your `myamazingweb.com` server. You would run:
 
 	>> python3 docker-sync user@myamazingweb.com
+	
+The output is something like:
+
 	Connecting to user@myamazingweb.com.
 	Listing user@myamazingweb.com images...............................DONE
 	Listing local images........................................DONE
@@ -37,7 +40,6 @@ Lets assume you want to synchronize your local machine docker images with the on
 	current: ['squid:latest', 'ubuntu:latest', 'debian:8.0']
 	need update: ['redis:latest']
 	new: ['mongodb:latest', 'gogs:latest']
-
 
 Nothing was synchronized yet, this is just to see the status of all the images:
 
