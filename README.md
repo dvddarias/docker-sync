@@ -38,7 +38,7 @@ Note: When synchronizing an image on the **New** list the script will try to loo
 
 ##Dependencies & Configuration
 
-You **need** python > 3.4 on your local machine and both the user running the script and the user on the remote host most have permissions to run `docker` commands. It uses `ssh` to connect to the host so you should also have the the appropriate permissions. There are *no dependencies* on the remote host other than the commands: bash, ls, rsync, ssh that are already installed on most linux distributions.
+You **need** python > 3.4 on your local machine and both the user running the script and the user on the remote host most have permissions to run `docker` commands. It uses `ssh` to connect to the host so you should also have the the appropriate permissions. There are **no dependencies on the remote host** other than the commands: bash, ls, rsync, ssh that are already installed on most linux distributions.
 
 
 
