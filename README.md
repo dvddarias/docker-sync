@@ -19,7 +19,9 @@ You are part of a team of 4 programmers working on a code base that runs on a do
 
 	RUN pip install mysqlclient psycopg2 django=="$DJANGO_VERSION"
 
-Everything is working ok until you need a new package installed on the image. Now you have to add the package to the first `RUN` command, rebuild and push it to the registry for everyone to download. These two `RUN` commands account for 240mb of the image and both layers are rebuilt, effectively making your whole team download these **240mb** again from the registry every time a new dependency is added to the image.
+Everything is working ok until you need a new package installed on the image. Now you have to add the package to the first `RUN` command, rebuild and push it to the registry for everyone to download. 
+
+These two `RUN` commands account for 240mb of the image and both layers are rebuilt, effectively making your whole team download these **240mb** again from the registry every time a new dependency is added to the image.
 
 With the command `docker-sync user@somewebserver.com django:latest` you would only transfer (with rsync) the compressed difference between the two images. In this case, if the package were for example `gettext` the whole update would only be around **~1mb** and no need to push or pull from any docker registry.
 
