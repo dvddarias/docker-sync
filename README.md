@@ -40,6 +40,25 @@ Note: When synchronizing an image on the **New** list the script will try to loo
 
 You **need** python > 3.4 on your local machine and both the user running the script and the user on the remote host most have permissions to run `docker` commands. It uses `ssh` to connect to the host so you should also have the the appropriate permissions. There are **no dependencies on the remote host** other than the commands: bash, ls, rsync, ssh that are already installed on most linux distributions.
 
+##Typical use case
 
+You are part of a team of 4 programmers working on a code base that runs on a docker image. Lets assume it is a `Django` image that has the following Dockerfile and weights 450mb:
+
+	FROM python:3.4-slim
+
+	RUN apt-get update && apt-get install -y \
+			gcc \
+			mysql-client libmysqlclient-dev \
+			postgresql-client libpq-dev \
+			sqlite3 \
+		--no-install-recommends && rm -rf /var/lib/apt/lists/*
+
+	ENV DJANGO_VERSION 1.8.6
+
+	RUN pip install mysqlclient psycopg2 django=="$DJANGO_VERSION"
+
+Everything is working ok until you need a new package installed on the image. Now you have to add the package to the first `RUN` command and rebuild it. These two `RUN` commands account for 240mb of the image and both layers are rebuilt, effectively making your whole team download these 240mb again from the registry every time a new dependency is added to the image.
+
+The solution is to run `docker-sync user@somewebserver.com django:latest` and it will only transfer (with rsync) the compressed difference between the two images. In this case, if the package were for example `gettext` it would transfer around ~1mb.
 
 
