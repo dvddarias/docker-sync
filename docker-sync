@@ -9,7 +9,8 @@ def main():
 	args = parse_args()
 
 	just_size = 60
-	socket_path = os.path.join(args.folder,"docker_sync_ssh_socket")
+	current_time = str(time.time()).replace(".","")
+	socket_path = os.path.join(args.folder,"docker_sync_ssh_socket_%s"%current_time)
 
 	print("Connecting to %s."%args.remote)
 	master, output = create_master_connection(args.remote, socket_path)
@@ -51,7 +52,7 @@ def main():
 		if len(args.images)==0 or name_tag in args.images:
 
 			is_new = name_tag in new
-			file_name = "./%s_%s_sync_temp.tar.gz"%(name_tag.replace(":","_"), str(time.time()).replace(".",""))
+			file_name = args.folder + "/%s_%s_sync_temp.tar.gz"%(name_tag.replace(":","_").replace("/","_").replace("\\","_"), current_time )
 
 			if is_new:
 				print("\n--> Importing '%s':\n"%name_tag)
