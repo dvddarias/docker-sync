@@ -41,7 +41,7 @@ def main():
 
 	update_set = set(args.images)
 	if args.all:
-		update_set = set(need_update).union(new);
+		update_set = set(need_update).union(new)
 	else:
 		if args.update:
 			update_set = update_set.union(set(need_update))
@@ -173,7 +173,7 @@ def execute(command, print_output = False):
 
 	while True:
 		if print_output:
-			line = p.stdout.read(10).decode("UTF-8")
+			line = p.stdout.read(1024).decode("UTF-8")
 			sys.stdout.write(line)
 			sys.stdout.flush()
 		else:
