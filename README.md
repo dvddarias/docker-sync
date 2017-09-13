@@ -2,7 +2,7 @@
 
 A script to synchronize docker images between hosts with emphasis on reducing the amount of data transfered. It is a pure python3 script, does **not** depend on the docker registry and has **no dependencies** on the remote server you are synchronizing with.
 
-##Typical use case
+## Typical use case
 
 You are part of a team of 4 programmers working on a code base that runs on a docker image. Lets assume it is a `Django` image that has the following Dockerfile:
 
@@ -25,12 +25,12 @@ These two `RUN` commands account for 240mb of the image and both layers are rebu
 
 With the command `docker-sync user@somewebserver.com django:latest` you would only transfer (with rsync) the compressed difference between the two images. In this case, if the package were for example `gettext` the whole update would only be around **~1mb** and no need to push or pull from any docker registry.
 
-##Installation
+## Installation
 
 	curl -L https://github.com/dvddarias/docker-sync/raw/master/docker-sync > /usr/local/bin/docker-sync
 	chmod +x /usr/local/bin/docker-sync
 
-##Usage
+## Usage
 
 Lets assume you want to synchronize your local machine docker images with the ones on your `myamazingweb.com` server. You would run:
 
@@ -58,7 +58,7 @@ To sync the redis image run
 
 Please run the script with `--help` for further details.
 
-##How does it work
+## How does it work
 
 When synchronizing two images it connects via ssh to the remote server and:
  1. Dumps both images (local & remote) to the hard drive (`docker save`).
@@ -68,7 +68,7 @@ When synchronizing two images it connects via ssh to the remote server and:
 
 Note: When synchronizing an image on the **New** list the script will try to look for the highest common parent on your local machine to run the `rsync` command, so it pays off **a lot** to use images with the same base image. If no common parent is found the whole image is compressed and transfered.
 
-##Dependencies & Configuration
+## Dependencies & Configuration
 
 You **need** python > 3.4 on your local machine and both the user running the script and the user on the remote host most have permissions to run `docker` commands. It uses `ssh` to connect to the host so you should also have the the appropriate permissions. There are **no dependencies on the remote host** other than: bash, rsync & ssh that are already installed on most linux distributions.
 
