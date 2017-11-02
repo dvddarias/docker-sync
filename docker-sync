@@ -87,7 +87,7 @@ def main():
 			_, output = execute(["rsync", "-e", "ssh -o \"ControlPath=%s\""%socket_path, "-vhz", "--progress", "%s:%s"%(args.remote,file_name), file_name], True)
 			check(output)
 
-			print("Removing remote temporal file".ljust(just_size,"."), end="", flush=True)
+			print("Removing remote temporary file".ljust(just_size,"."), end="", flush=True)
 			_, output = execute(["ssh", args.remote, "-o", "ControlPath=%s"%socket_path, "rm", file_name])
 			check(output)
 
@@ -95,7 +95,7 @@ def main():
 			_, output = execute("docker load -i %s"%(file_name))
 			check(output)
 
-			print("Removing local temporal file".ljust(just_size,"."), end="", flush=True)
+			print("Removing local temporary file".ljust(just_size,"."), end="", flush=True)
 			_, output = execute("rm %s"%file_name)
 			check(output)
 
@@ -160,7 +160,7 @@ def parse_args():
 		if os.path.isdir(path):	return os.path.abspath(path)
 		else: raise argparse.ArgumentTypeError("The specified path is not a directory")
 
-	parser.add_argument('-f', "--tmpfolder", dest="folder", type=folder, default="/tmp", help='The path to temporally put the image dumps. Defaults to /tmp.')
+	parser.add_argument('-f', "--tmpfolder", dest="folder", type=folder, default="/tmp", help='The path to temporarily put the image dumps. Defaults to /tmp.')
 
 	return parser.parse_args()
 
