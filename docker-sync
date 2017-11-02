@@ -187,7 +187,7 @@ def execute(command, print_output = False):
 def get_image_parents(image, remote, socket_path):
 	command = """
 	parent=$(docker inspect %s | grep -Po \"(?<=\\\"Id\\\": \\\")[^\\\"]*\"  );
-	while test $(echo $parent|wc -m) -eq 65;
+	while test $(echo $parent|wc -m) -eq 72;
 	do
 		echo $parent;
 		parent=$(docker inspect ${parent} | grep -Po \"(?<=\\\"Parent\\\": \\\")[^\\\"]*\" );
